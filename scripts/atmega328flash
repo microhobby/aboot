@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# set fuses
+# LOW nothing selected
+avrdude \
+	-v \
+	-patmega328p \
+	-cusbasp \
+	-Pusb \
+	-U lfuse:w:0xFF:m
+
+# EXTENDED = BODLEVEL1
+avrdude \
+	-v \
+	-patmega328p \
+	-cusbasp \
+	-Pusb \
+	-U efuse:w:0xFD:m
+
+# HIGH = SPIEN | BOOTSZ1 | BOOTRST 
+avrdude \
+	-v \
+	-patmega328p \
+	-cusbasp \
+	-Pusb \
+	-U hfuse:w:0xDA:m
+
+# flash
+avrdude \
+	-v \
+	-patmega328p \
+	-cusbasp \
+	-Pusb \
+	-Uflash:w:../.pio/build/castellino/firmware.hex:i
+
+echo "Success?"

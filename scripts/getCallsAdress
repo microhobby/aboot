@@ -1,0 +1,11 @@
+#!/bin/bash
+
+PIO_ELF_PATH=../.pio/build/castellino/
+
+avr-objdump $PIO_ELF_PATH/firmware.elf -D
+
+echo "-----------------------------------------------------------------------------"
+
+avr-objdump $PIO_ELF_PATH/firmware.elf -x | grep return_challengev
+avr-objdump $PIO_ELF_PATH/firmware.elf -x | grep return_keyv
+avr-objdump $PIO_ELF_PATH/firmware.elf -x | grep flash_countv
