@@ -4,30 +4,34 @@
 # LOW nothing selected
 avrdude \
 	-v \
+	-D \
 	-patmega328p \
 	-cusbasp \
 	-Pusb \
 	-U lfuse:w:0xFF:m
 
+# HIGH = BOOTRST | BOOTSZ1 | EESAVE | SPIEN 
+avrdude \
+	-v \
+	-D \
+	-patmega328p \
+	-cusbasp \
+	-Pusb \
+	-U hfuse:w:0xD2:m
+
 # EXTENDED = BODLEVEL1
 avrdude \
 	-v \
+	-D \
 	-patmega328p \
 	-cusbasp \
 	-Pusb \
 	-U efuse:w:0xFD:m
 
-# HIGH = SPIEN | BOOTSZ1 | BOOTRST 
-avrdude \
-	-v \
-	-patmega328p \
-	-cusbasp \
-	-Pusb \
-	-U hfuse:w:0xDA:m
-
 # flash
 avrdude \
 	-v \
+	-D \
 	-patmega328p \
 	-cusbasp \
 	-Pusb \
