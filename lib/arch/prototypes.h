@@ -17,9 +17,8 @@ void asm_flash_data(void);
 void turn_led_on(void);
 void increment_flash_counter(void);
 void flash_counter_to_zero(void);
-int return_key (void);
-int return_challenge (void);
 int flash_count (void);
+void flash_count_update (int value);
 
 /* some variables */
 union address_union {

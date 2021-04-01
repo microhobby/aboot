@@ -103,7 +103,7 @@ void nothing_response(void)
 	}
 }
 
-void flash_led(uint8_t count)
+void flash_led (uint8_t count)
 {
 	while (count--) {
 		LED_PORT |= _BV(LED);
@@ -113,51 +113,39 @@ void flash_led(uint8_t count)
 	}
 }
 
-void turn_led_on()
+void turn_led_on ()
 {
     LED_PORT |= _BV(LED);
 }
 
-int return_key () 
-{
-	return 42;
-}
-
-int return_challenge ()
-{
-	return 24;
-}
-
-void increment_flash_counter()
+void increment_flash_counter ()
 {
 	/* only increment one time */
 	if (flash_count_var == 0xFF) {
-		/* read last byte - last byte is flash counter */
-		flash_count_var = eeprom_read_byte((uint8_t *)512);
+		flash_count_var = flash_count();
 		/* increment */
 		flash_count_var++;
-		eeprom_update_byte((uint8_t *)512, flash_count_var);
+		flash_count_update(flash_count_var);
 	}
 }
 
-void flash_counter_to_zero()
+void flash_counter_to_zero ()
 {
 	uint8_t count = eeprom_read_byte((uint8_t *)512);
 	if (count != 0) {
 		eeprom_write_byte((uint8_t *)512, 0);
 	}
-	asm volatile("nop             \n\t");
-	asm volatile("nop             \n\t");
-	asm volatile("nop             \n\t");
-	asm volatile("nop             \n\t");
-	asm volatile("nop             \n\t");
-	asm volatile("nop             \n\t");
-	asm volatile("nop             \n\t");
 }
 
-int flash_count()
+int flash_count ()
 {
+	/* read last byte - last byte is flash counter */
 	return eeprom_read_byte((uint8_t *)512);
+}
+
+void flash_count_update (int value)
+{
+	eeprom_update_byte((uint8_t *)512, value);
 }
 
 #endif
