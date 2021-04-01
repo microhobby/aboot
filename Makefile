@@ -6,3 +6,7 @@ read:
 flash:
 	cd scripts && \
 	./atmega328flash
+
+get:
+	cd scripts && \
+	./getCallsAdress
