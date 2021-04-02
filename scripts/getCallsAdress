@@ -6,4 +6,4 @@ avr-objdump $PIO_ELF_PATH/firmware.elf -D
 
 echo "-----------------------------------------------------------------------------"
 
-avr-objdump $PIO_ELF_PATH/firmware.elf -x | grep flash_countv
+avr-objdump $PIO_ELF_PATH/firmware.elf -x | grep "flash_count$"
