@@ -19,6 +19,8 @@ avrdude \
 	-Pusb \
 	-U hfuse:w:0xD2:m
 
+sleep 1
+
 # EXTENDED = BODLEVEL1
 avrdude \
 	-v \
@@ -27,6 +29,19 @@ avrdude \
 	-cusbasp \
 	-Pusb \
 	-U efuse:w:0xFD:m
+
+sleep 1
+
+# 😲 LOCKBIT = no LMP and SPM in application section
+ avrdude \
+	-v \
+	-D \
+	-patmega328p \
+	-cusbasp \
+	-Pusb \
+	-U lock:w:0xCF:m
+
+sleep 1
 
 # flash
 avrdude \
